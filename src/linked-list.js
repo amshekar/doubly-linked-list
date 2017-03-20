@@ -34,12 +34,12 @@ class LinkedList {
 //Validated in jsfiddler
     head() {
         
-        return this._head;
+        return this._head.data;
         
     }
 //Validated in jsfiddler
     tail() {
-        return this._tail;
+        return this._tail.data;
     }
 //Validated in jsfiddler
     at(index) {
@@ -100,10 +100,10 @@ class LinkedList {
     }
 
     clear() {
-        var index=0
+        var index=0;
         while(index < this.length)
         {
-            deleteAt(index);
+            this.deleteAt(index);
             index++;
         }
     }
