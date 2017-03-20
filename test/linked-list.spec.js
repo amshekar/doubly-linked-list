@@ -86,11 +86,11 @@ describe('LinkedList', () => {
         it('should return true if list is empty', () => {
             const list = new LinkedList();
 
-            expect(list.isEmpty()).to.be.true;
+           expect(list.isEmpty()).to.be.true;
 
             list.append(32);
 
-            expect(list.isEmpty()).to.be.false;
+           expect(list.isEmpty()).to.be.false;
         });
     });
 

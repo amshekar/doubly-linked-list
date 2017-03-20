@@ -88,14 +88,16 @@ class LinkedList {
     }
 
     isEmpty() {
-        if ( ! this.length) {
+        if (!this.length) {
         this._head.prev = this._tail;
         this._tail.next = this._head;
+        
       }
       else
       {
       return true;
-      }
+    }
+    
     
     }
 
@@ -154,7 +156,7 @@ class LinkedList {
     }
 
     indexOf(data) {
-        var current = this._head, i;
+        var current = this._head, i=0;
         while (current!==null){
             if(current.data===data){
                 return i;
