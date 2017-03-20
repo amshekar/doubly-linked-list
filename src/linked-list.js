@@ -1,4 +1,3 @@
-"use strict";
 const Node = require('./node');
 
 
@@ -9,29 +8,28 @@ class LinkedList {
         this.length=0;
         // pointer to first item
         this._head = null;
-    // pointer to the last item
+       // pointer to the last item
         this._tail = null;
     }
 
     append(data) {
+       //creating the object for the Node Class
       var node=new Node(data);
 
-      if(this.length===0)
+    //if truthy i.e., except for false , 0 , "" , null , undefined , and NaN 
+      if(this.length)
       {
-           this._head=node;
-          this._tail=node;
-        
+        this._tail.next=node  ;
+        node.prev=this._tail;
+        this._tail=node;         
       }  
       else{
-          this._tail.next=node  ;
-        node.prev=this._tail;
-        this._tail=node;
+           this._head=node;
+           this._tail=node;       
          
-      }
-       
+      }       
       this.length++;
-      return this;
-      
+      return this;      
     }
 
     head() {
@@ -69,8 +67,12 @@ class LinkedList {
 
     isEmpty() {
         if ( ! this.length) {
-        this._head.previous = this._tail;
+        this._head.prev = this._tail;
         this._tail.next = this._head;
+      }
+      else
+      {
+      return true;
       }
     
     }
