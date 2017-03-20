@@ -11,7 +11,7 @@ class LinkedList {
        // pointer to the last item
         this._tail = null;
     }
-
+//Validated in jsfiddler
     append(data) {
        //creating the object for the Node Class
       var node=new Node(data);
@@ -31,16 +31,17 @@ class LinkedList {
       this.length++;
       return this;      
     }
-
+//Validated in jsfiddler
     head() {
+        
         return this._head;
         
     }
-
+//Validated in jsfiddler
     tail() {
         return this._tail;
     }
-
+//Validated in jsfiddler
     at(index) {
     if( index>=0 && index <this.length){
             var current=this._head;
@@ -53,16 +54,37 @@ class LinkedList {
             return false;
         }
     }
-
+//Validated in jsfiddler
     insertAt(index, data) {
-        var position = this._at(index),
-        newNode = new Node(data, position.prev, position);
+        if( index>=0 && index <=this.length){
+            let current=this._head;
+            let node=new Node(data);
+            if (this.length===0) {
+                this._head=node;
+                this._tail=node;
+            }
+            if(index===0){
+                node.next=current;
+                current.prev=node;
+                this.head=node;
+            }
+            if (index===this.length) {
+                this._tail.next=node;
+                node.prev=this._tail;
+                this._tail=node;
+            } else{
+            for (let i=0;i!=index; i++){
+                current=current.next;
+            }
+            current.prev.next=node;
+            node.prev=current.prev;
+            node.next=current;
+            current.prev=node;
+            }
+            this.length++;
+            return this;
 
-    position.prev = newNode;
-    newNode.prev.next = newNode;
-    this.length++;
-
-    return this;
+        } 
     }
 
     isEmpty() {
@@ -77,7 +99,14 @@ class LinkedList {
     
     }
 
-    clear() {}
+    clear() {
+        var index=0
+        while(index < this.length)
+        {
+            deleteAt(index);
+            index++;
+        }
+    }
 
     deleteAt(index) {
          if( index>=0 && index <this.length){
@@ -111,8 +140,8 @@ class LinkedList {
     }
 
     reverse() {
-         var current = this._head, tmp;
-        while (current!==null){
+        var current = this._head, tmp;
+        while (current!=null){
         tmp=current.next;
         current.next = current.prev;
         current.prev=tmp;
